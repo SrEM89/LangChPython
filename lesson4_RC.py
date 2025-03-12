@@ -13,11 +13,24 @@ from langchain_core.documents import Document
 #from langchain.chains.combine_documents import create_stuff_documents_chain
 
 docA = Document(
-    page_content= '''LangChain Expression Language, or LCEL, is a declarative way to easily compose chains 
-    together. LCEL was designed from day 1 to support putting prototypes in production, 
-    with no code changes, from the simplest “prompt + LLM” chain to the most complex chains 
-    (we’ve seen folks successfully run LCEL chains with 100s of steps in production). 
-    To highlight a few of the reasons you might want to use LCEL'''
+    page_content= '''Cristiano Ronaldo is widely regarded as one of the greatest footballers of all time. He was born on February 5, 1985, in Funchal, Madeira, Portugal, and began his football career playing for local club Andorinha at the age of eight.
+
+Ronaldo's talent was quickly recognized, and he joined Sporting CP's youth academy at the age of 12. He made his professional debut for Sporting CP in 2002 at the age of 17 and caught the attention of Manchester United manager Sir Alex Ferguson, who signed him for a fee of £12.24 million in 2003.
+
+At Manchester United, Ronaldo established himself as one of the best young players in the world, winning the FA Cup in his first season and the Premier League title in his second. He continued to develop his skills and became a key player for Manchester United, helping the team win three Premier League titles, the Champions League, and the FIFA Club World Cup.
+
+In 2009, Ronaldo was transferred to Real Madrid for a world-record fee of £80 million. He quickly became the team's star player, leading Real Madrid to four Champions League titles, two La Liga titles, and two FIFA Club World Cups. He also won the Ballon d'Or, the most prestigious individual award in football, four times while playing for Real Madrid.
+
+In 2018, Ronaldo joined Juventus for a fee of €100 million, where he continued to add to his impressive list of accolades, including two Serie A titles and a Supercoppa Italiana title.
+
+Throughout his career, Ronaldo has been known for his incredible work ethic, skill, and goalscoring ability. He has won numerous individual awards, including five Ballon d'Or awards, and has scored over 750 career goals for club and country. He has also represented Portugal at four World Cups and has won the UEFA European Championship with his national team in 2016.
+
+Ronaldo's impact on the game of football is undeniable, and he will go down in history as one of the greatest players of all time.'''
+    # page_content= '''LangChain Expression Language, or LCEL, is a declarative way to easily compose chains 
+    # together. LCEL was designed from day 1 to support putting prototypes in production, 
+    # with no code changes, from the simplest “prompt + LLM” chain to the most complex chains 
+    # (we’ve seen folks successfully run LCEL chains with 100s of steps in production). 
+    # To highlight a few of the reasons you might want to use LCEL'''
 )
 
 docB = Document(
@@ -49,7 +62,7 @@ prompt = ChatPromptTemplate.from_template("""
 
 chain = prompt | llm
 response = chain.invoke({
-    'input':"What is Mahidol",
+    'input':"How old ronaldo ?",
     'context': [docA, docB]
 })
 print(response.content)
