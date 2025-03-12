@@ -7,13 +7,18 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_community.document_loaders import WebBaseLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_openai import OpenAIEmbeddings
+# from langchain_openai import OpenAIEmbeddings
+from langchain_together import TogetherEmbeddings
 from langchain_community.vectorstores.faiss import FAISS
 from langchain.chains import create_retrieval_chain
 
 from langchain_core.messages import HumanMessage, AIMessage
 from langchain_core.prompts import MessagesPlaceholder
 
+
+embedding = TogetherEmbeddings(
+    model="togethercomputer/m2-bert-80M-8k-retrieval",
+)
 
 
 def  get_document_from_web(url):
@@ -30,7 +35,7 @@ def  get_document_from_web(url):
     return splitDocs
 
 def create_db(docs):
-    embedding = OpenAIEmbeddings()
+    # embedding = OpenAIEmbeddings()
     vectorStore = FAISS.from_documents(docs, embedding = embedding) 
     return vectorStore
 
@@ -71,7 +76,7 @@ def process_chat(chain, input_text, chat_history):
 
 
 if __name__ == "__main__":
-    docs = get_document_from_web("https://python.langchain.com/v0.1/docs/expression_language/")
+    docs = get_document_from_web("https://football.fandom.com/wiki/Cristiano_Ronaldo")
     vectorStore = create_db(docs)
     chain = create_chain(vectorStore)
 

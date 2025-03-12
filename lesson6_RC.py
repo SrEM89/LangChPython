@@ -35,7 +35,8 @@ def  get_document_from_web(url):
         chunk_overlap=20,
     )
     splitDocs = splitter.split_documents(docs)
-    # print(len(splitDocs))
+    print(len(splitDocs))
+    print(splitDocs[1])
 
     return splitDocs
 
@@ -47,7 +48,7 @@ def create_db(docs):
     vectorStore = FAISS.from_documents(docs, embedding = embedding) 
     return vectorStore
 
-docs = get_document_from_web("https://python.langchain.com/v0.1/docs/expression_language/")
+docs = get_document_from_web("https://football.fandom.com/wiki/Cristiano_Ronaldo")
 vectorStore = create_db(docs)
 
 
